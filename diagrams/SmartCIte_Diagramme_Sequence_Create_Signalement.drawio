@@ -30,6 +30,17 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="cJ4QcJpqLc45l75aw7wm-1" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="uKWoDDICKwsnE89RhWIm-4">
+          <mxGeometry x="50" y="400" width="10" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cJ4QcJpqLc45l75aw7wm-2" value="Notifie l&#39;administrateur" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" target="cJ4QcJpqLc45l75aw7wm-1" parent="uKWoDDICKwsnE89RhWIm-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="380" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="uKWoDDICKwsnE89RhWIm-8" value="Demande de signalement" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="uKWoDDICKwsnE89RhWIm-2" target="uKWoDDICKwsnE89RhWIm-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="375" y="290" as="sourcePoint" />
@@ -65,7 +76,7 @@
           <mxGeometry x="40" y="260" width="10" height="80" as="geometry" />
         </mxCell>
         <mxCell id="uKWoDDICKwsnE89RhWIm-16" value="Failed" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" parent="1" vertex="1">
-          <mxGeometry x="210" y="630" width="760" height="70" as="geometry" />
+          <mxGeometry x="210" y="640" width="760" height="70" as="geometry" />
         </mxCell>
         <mxCell id="uKWoDDICKwsnE89RhWIm-17" value="Remplie les informations necessaires" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" parent="1" target="uKWoDDICKwsnE89RhWIm-4" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -114,7 +125,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="uKWoDDICKwsnE89RhWIm-25" value="Success" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" parent="1" vertex="1">
-          <mxGeometry x="210" y="550" width="760" height="70" as="geometry" />
+          <mxGeometry x="210" y="550" width="760" height="80" as="geometry" />
         </mxCell>
         <mxCell id="uKWoDDICKwsnE89RhWIm-26" value="Renvoie un message d&#39;erreur" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
