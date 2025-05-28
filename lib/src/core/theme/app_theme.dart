@@ -32,13 +32,13 @@ class AppTheme {
       bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.background),
       dialogTheme: DialogTheme(backgroundColor: colors.background),
       navigationBarTheme: NavigationBarThemeData(
-        indicatorColor: colors.primary.withOpacity(.3),
+        indicatorColor: colors.primary.withAlpha(75),
         surfaceTintColor: Colors.transparent,
         backgroundColor: colors.background,
         elevation: 3.0,
-        iconTheme: MaterialStateProperty.resolveWith(
+        iconTheme: WidgetStateProperty.resolveWith(
           (states) {
-            if (states.contains(MaterialState.selected)) {
+            if (states.contains(WidgetState.selected)) {
               return IconThemeData(color: colors.primary);
             }
 
@@ -48,8 +48,6 @@ class AppTheme {
       ),
       primaryColor: colors.primary,
       colorScheme: ColorScheme(
-        background: colors.background,
-        onBackground: colors.onBackground,
         primary: colors.primary,
         onPrimary: colors.onPrimary,
         surface: colors.surface,

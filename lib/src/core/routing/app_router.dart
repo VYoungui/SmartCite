@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_cite/src/feature/home_screen/ui/home_screen.dart';
+
 class AppRouter{
   GoRouter getConfig(){
     /// The route configuration.
@@ -14,7 +15,6 @@ class AppRouter{
             //const SplashScreen();
           },
         )
-
       ],
     );
     return router;
