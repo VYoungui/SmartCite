@@ -1,0 +1,9 @@
+import 'package:smart_cite/src/feature/home_screen/config/ressources/data_state.dart';
+import 'package:smart_cite/src/feature/home_screen/domain/entities/user_entity.dart';
+
+abstract class UserRepository {
+  Future<DataState<List<UserEntity>>> getNewUser();
+  Future<DataState<List<UserEntity>>> getSavedUser();
+  Future<void> saveUser(UserEntity user);
+  Future<void> removeUser(UserEntity user);
+}
