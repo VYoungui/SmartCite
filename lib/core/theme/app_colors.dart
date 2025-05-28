@@ -19,12 +19,12 @@ class AppColors {
         onBackground = const Color(0xFF3E3E3E),
         surface = const Color(0xFFFFFFFF),
         onSurface = const Color(0xFF000000),
-        secondary = const Color(0xFF81CD72).withOpacity(0.10),
-        onSecondary = const Color(0xFF81CD72),
+        secondary = const Color(0x1A81CD72),
+        onSecondary = const Color(0xB381CD72),
         primary = const Color(0xFF81CD72),
         onPrimary = const Color(0xFFFFFFFF),
         error = const Color(0xFFF44336),
-        errorContainer = const Color(0xFFF44336).withOpacity(0.2),
+        errorContainer = const Color(0x33F44336),
         onError = const Color(0xFFFBFAF5);
 
   AppColors.dark()
