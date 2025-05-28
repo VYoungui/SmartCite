@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:smart_cite/core/routing/app_router.dart';
-import 'package:smart_cite/core/theme/app_theme.dart';
+import 'package:smart_cite/src/core/routing/app_router.dart';
+import 'package:smart_cite/src/core/theme/app_theme.dart';
 
 
 class Application extends StatelessWidget {

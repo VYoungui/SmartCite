@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:smart_cite/src/core/app_initializer.dart';
+import 'package:smart_cite/src/core/application.dart';
 
-import 'core/app_initializer.dart';
-import 'core/application.dart';
 
 void main() {
   final AppInitializer appInitializer = AppInitializer();
