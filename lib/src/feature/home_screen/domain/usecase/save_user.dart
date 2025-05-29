@@ -1,14 +1,29 @@
+import 'package:smart_cite/src/feature/home_screen/config/util/password_encryption.dart';
+
 import '../../config/usecase/usecase.dart';
 import '../entities/user_entity.dart';
 import '../repository/user_repository.dart';
 
-class SaveUserCase implements Usecase<void, UserEntity> {
+class SaveUserCase implements Usecase <void, UserEntity> {
   final UserRepository _userRepository;
+  final PasswordEncoder _passwordEncoder;
 
-  SaveUserCase(this._userRepository);
+  SaveUserCase(
+      this._userRepository,
+      this._passwordEncoder
+      );
 
   @override
   Future<void> call({UserEntity? params}) {
-    return _userRepository.saveUser(params!);
+    if (params == null) {
+      throw ArgumentError('params cannot be null');
+    }
+
+    final securedUser = params.copyWith(
+      password: _passwordEncoder.encode(params.password),
+    );
+
+    return _userRepository.saveUser(securedUser);
   }
+
 }
