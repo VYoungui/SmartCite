@@ -15,12 +15,11 @@ class UserEntity extends Equatable {
     required this.role,
     required this.avatar_url,
     required this.fcm_token,
-})
+});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
-      id,
+    id,
     full_name,
     role,
     avatar_url,
