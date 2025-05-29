@@ -1,6 +1,6 @@
 import 'package:smart_cite/src/feature/home_screen/domain/entities/user_entity.dart';
 
-import '../../config/usecase/usecase.dart';
+import '../../../../config/usecase/usecase.dart';
 import '../repository/user_repository.dart';
 
 class RemoveUserUseCase implements Usecase<void, UserEntity> {

@@ -1,7 +1,7 @@
-import 'package:smart_cite/src/feature/home_screen/config/ressources/data_state.dart';
-import 'package:smart_cite/src/feature/home_screen/config/usecase/usecase.dart';
 import 'package:smart_cite/src/feature/home_screen/domain/entities/user_entity.dart';
 
+import '../../../../config/ressources/data_state.dart';
+import '../../../../config/usecase/usecase.dart';
 import '../repository/user_repository.dart';
 
 class GetUserUseCase
