@@ -6,16 +6,16 @@ import '../../../core/theme/dimens.dart';
 import '../../../shared/enum/button_style.dart';
 
 
-class GetStartScreen extends StatefulWidget {
-  const GetStartScreen({super.key});
+class Unboarding1Screen extends StatefulWidget {
+  const Unboarding1Screen({super.key});
 
   @override
-  State<GetStartScreen> createState() => _GetStartScreen();
+  State<Unboarding1Screen> createState() => _Unboarding1Screen();
 
 
 }
 
-class _GetStartScreen extends State<GetStartScreen> {
+class _Unboarding1Screen extends State<Unboarding1Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +27,16 @@ class _GetStartScreen extends State<GetStartScreen> {
               height: Dimens.doubleSpace,
             ),
             Image.asset(
-                'assets/images/green-world.png',
-                width: 300, 
-                height: 270,
+                'assets/images/Send-money-abroad.png',
+                width: 222,
+                height: 260,
                 fit: BoxFit.cover
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 25),
             Container(
               padding: const EdgeInsets.all(20),
               child: Text(
-                  'Signalez vos problèmes urbains en toute simplicité',
+                  'Visualisez l’état de votre incident et surveillez son traitement',
                   textAlign: TextAlign.center,
                   style:
                   Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -44,14 +44,14 @@ class _GetStartScreen extends State<GetStartScreen> {
                   )
               ),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 80),
             SizedBox(
               width: 360, // Largeur augmentée
               height: 50, // Hauteur augmentée
               child: ValidatedButton(
-                title: 'Allons-y',
+                title: 'Suivant',
                 onPressed: () {
-                  context.go('/unboarding1');
+                  context.go('/unboarding2');
                 },
                 buttonStyle: ValidatedButtonStyle.valid,
               ),
