@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../shared/enum/button_style.dart';
+import '../../../shared/widgets/buttons/validated_button.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -30,6 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 32,
                   fontWeight: FontWeight.bold),
+            ),
+            ValidatedButton(
+              title: 'Next',
+              onPressed: () {
+                context.go('/getStart');
+              },
+              buttonStyle: ValidatedButtonStyle.valid,
             ),
           ],
         ),
