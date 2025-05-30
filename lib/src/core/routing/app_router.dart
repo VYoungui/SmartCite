@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_cite/src/feature/home_screen/ui/home_screen.dart';
-import 'package:smart_cite/src/feature/unboarding_1/ui/unboarding_1_screen.dart';
+import 'package:smart_cite/src/feature/unboarding1_screen/ui/unboarding_1_screen.dart';
 
 import '../../feature/get_start_screen/ui/get_start_screen.dart';
-import '../../feature/unboarding_2/ui/unboarding_2_screen.dart';
+import '../../feature/unboarding2_screen/ui/unboarding_2_screen.dart';
 
 class AppRouter{
   GoRouter getConfig(){
