@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:smart_cite/src/shared/enum/inputfield_style.dart';
 
 import '../../../core/theme/dimens.dart';
 
@@ -6,6 +8,8 @@ typedef VoidString = Function(String);
 typedef StringVoidString = String? Function(String?);
 
 class InputTextField extends StatelessWidget {
+  final InputFieldStyle inputFieldStyle;
+  final String title;
   final String? label;
   final Widget? prefix;
   final Widget? suffix;
@@ -25,75 +29,125 @@ class InputTextField extends StatelessWidget {
       required this.enabled,
       required this.onChanged,
       required this.validator,
-      required this.obscureText});
+      required this.obscureText,
+      required this.title,
+      required this.inputFieldStyle});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-          top: Dimens.space/2,
-          bottom: Dimens.space/2,
+          top: Dimens.space / 2,
+          bottom: Dimens.space / 2,
           left: Dimens.padding,
-          right: Dimens.padding
-      ),
-      child: TextFormField(
-        enabled: enabled,
-        textAlign: align,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            fontWeight: FontWeight.w400,
-            fontSize: 12
-        ),
-        onEditingComplete: () {
-          FocusScope.of(context).nextFocus();
-        },
-        onTapOutside: (event) {
-          FocusScope.of(context).unfocus();
-        },
-        obscureText: obscureText,
-        onChanged: onChanged,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        validator: validator,
-        controller: controller,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.halfRadius),
-            borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface,
-                style: BorderStyle.solid
+          right: Dimens.padding),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Visibility(
+              visible: inputFieldStyle == InputFieldStyle.input ? true : false,
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.bodyLarge,
+              )),
+          const SizedBox(
+            height: Dimens.minPadding,
+          ),
+          TextFormField(
+            enabled: enabled,
+            textAlign: align,
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+            onEditingComplete: () {
+              FocusScope.of(context).nextFocus();
+            },
+            onTapOutside: (event) {
+              FocusScope.of(context).unfocus();
+            },
+            obscureText: obscureText,
+            onChanged: onChanged,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: validator,
+            controller: controller,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: inputFieldStyle == InputFieldStyle.input
+                  ? Theme.of(context).colorScheme.surface
+                  : Theme.of(context).colorScheme.onSurface.withAlpha(25),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Dimens.halfRadius),
+                borderSide: BorderSide(
+                    color: inputFieldStyle == InputFieldStyle.input
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.transparent,
+                    style: inputFieldStyle == InputFieldStyle.input
+                        ? BorderStyle.solid
+                        : BorderStyle.none),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Dimens.halfRadius),
+                borderSide: BorderSide(
+                    color: inputFieldStyle == InputFieldStyle.input
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.transparent,
+                    style: inputFieldStyle == InputFieldStyle.input
+                        ? BorderStyle.solid
+                        : BorderStyle.none),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Dimens.halfRadius),
+                borderSide: BorderSide(
+                    color: inputFieldStyle == InputFieldStyle.input
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.transparent,
+                    style: inputFieldStyle == InputFieldStyle.input
+                        ? BorderStyle.solid
+                        : BorderStyle.none),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Dimens.halfRadius),
+                borderSide: BorderSide(
+                    color: inputFieldStyle == InputFieldStyle.input
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.transparent,
+                    style: inputFieldStyle == InputFieldStyle.input
+                        ? BorderStyle.solid
+                        : BorderStyle.none),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Dimens.halfRadius),
+                borderSide: BorderSide(
+                    color: inputFieldStyle == InputFieldStyle.input
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.transparent,
+                    style: inputFieldStyle == InputFieldStyle.input
+                        ? BorderStyle.solid
+                        : BorderStyle.none),
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              labelText: label,
+              hintText: inputFieldStyle == InputFieldStyle.search
+                  ? 'Rechercher un problème' : '',
+              hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurface.withAlpha(75),
+              ),
+              prefixIcon: inputFieldStyle == InputFieldStyle.search
+                  ? Icon(
+                Iconsax.search_normal,
+                color:
+                Theme.of(context).colorScheme.onSurface.withAlpha(75),
+              )
+                  : prefix,
+              suffixIcon: suffix,
+              labelStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
             ),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.halfRadius),
-            borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface,
-                style: BorderStyle.solid,
-                width: 1
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.halfRadius),
-            borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface,
-                style: BorderStyle.solid,
-                width: 1
-            ),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.halfRadius),
-            borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface,
-                style: BorderStyle.solid,
-                width: 1
-            ),
-          ),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelText: label,
-          prefixIcon: prefix,
-          suffixIcon: suffix,
-          labelStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurface,
-          ),
-        ),
+        ],
       ),
     );
   }
