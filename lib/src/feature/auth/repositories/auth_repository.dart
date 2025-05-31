@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:smart_cite/src/config/util/password_encryption.dart';
 import 'package:smart_cite/src/feature/auth/model/user_model.dart';
+import 'package:smart_cite/src/feature/dto/request/login_request.dart';
+import 'package:smart_cite/src/feature/dto/request/register_request.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../shared/model/reponse_entity.dart';
@@ -9,22 +12,11 @@ import '../../../shared/repository/base_repository.dart';
 
 class AuthRepository extends BaseRepository {
 
-  Future<List<QuizDetails>> getQuizWithDetails () async {
-    final data = await  Supabase.instance.client.from('quiz').select(
-        ', domain() ,section(, title(),question(*))').order('id', ascending: true);
-    if (kDebugMode) {
-      print(data);
-    }
-    List<QuizDetails> quizDetails = [];
-    for (var element in data) {
-      quizDetails.add(QuizDetails.fromJson(element));
-    }
+  late final PasswordEncoder _passwordEncoder;
 
-    return quizDetails;
-  }
 
-  Future<List<Profiles>> getUsers () async {
-    final data = await  Supabase.instance.client.from('mobiles_app.profiles').select();
+  Future<List<Profiles>> login (LoginRequest loginRequest) async {
+    final data = await Supabase.instance.client.from('mobiles_app.profiles').select().eq('email', loginRequest.email).eq('password', loginRequest.password);
     if (kDebugMode) {
       print(data);
     }
@@ -32,20 +24,30 @@ class AuthRepository extends BaseRepository {
     for (var element in data) {
       profiles.add(Profiles.fromJson(element));
     }
+    return profiles;
   }
 
-
-
-  Future<ResponseEntity> login(LoginRequest loginRequest) async {
-    print('$authUrl/login');
-    print(loginRequest.toJson());
-    final response = await dio.post(
-      '$authUrl/login',
-      data: loginRequest.toJson(),
-    );
-    print('done');
-    print(response.data);
-    return ResponseEntity.fromJson(response.data);
+  Future<List<Profiles>> register (RegisterRequest registerRequest) async {
+    final password_encrypt = _passwordEncoder.encode(registerRequest.password);
+    final payload = {
+      'email': registerRequest.email,
+      'password': password_encrypt,
+      'full_name': registerRequest.full_name,
+      'role': registerRequest.role,
+      'avatar_url': registerRequest.avatar_url,
+      'fcm_token': registerRequest.fcm_token,
+      // Ajoute les autres champs si nécessaires
+    };
+    final data = await Supabase.instance.client.from('mobiles_app.profiles').insert(payload).select();
+    if (kDebugMode) {
+      print(data);
+    }
+    List<Profiles> profiles = [];
+    for (var element in data) {
+      profiles.add(Profiles.fromJson(element));
+    }
+    return profiles;
   }
+
 
 }
