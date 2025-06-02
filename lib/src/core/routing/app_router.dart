@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_cite/src/feature/home_screen/ui/home_screen.dart';
+import 'package:smart_cite/src/feature/login_screen/ui/login.dart';
+import 'package:smart_cite/src/feature/signup_screen/ui/signup.dart';
 import 'package:smart_cite/src/feature/unboarding1_screen/ui/unboarding_1_screen.dart';
 
 import '../../feature/get_start_screen/ui/get_start_screen.dart';
@@ -33,6 +35,18 @@ class AppRouter{
             path: 'unboarding2',
               builder: (BuildContext context, GoRouterState state) {
                 return const Unboarding2Screen();
+              },
+            ),
+            GoRoute(
+            path: 'signup',
+              builder: (BuildContext context, GoRouterState state) {
+                return const Signup();
+              },
+            ),
+            GoRoute(
+            path: 'login',
+              builder: (BuildContext context, GoRouterState state) {
+                return const Login();
               },
             ),
           ],

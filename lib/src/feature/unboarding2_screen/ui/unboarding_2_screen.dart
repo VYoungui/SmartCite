@@ -51,7 +51,7 @@ class _Unboarding2Screen extends State<Unboarding2Screen> {
               child: ValidatedButton(
                 title: 'Connexion',
                 onPressed: () {
-                  context.go('/');
+                  context.go('/login');
                 },
                 buttonStyle: ValidatedButtonStyle.valid,
               ),
@@ -63,7 +63,7 @@ class _Unboarding2Screen extends State<Unboarding2Screen> {
               child: ValidatedButton(
                 title: 'Inscription',
                 onPressed: () {
-                  context.go('/');
+                  context.go('/signup');
                 },
                 buttonStyle: ValidatedButtonStyle.critic,
               ),
