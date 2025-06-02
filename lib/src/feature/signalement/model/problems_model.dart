@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-import 'package:smart_cite/src/feature/auth/model/categories_model.dart';
+import 'package:smart_cite/src/feature/signalement/model/categories_model.dart';
 import 'package:smart_cite/src/feature/auth/model/user_model.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../../shared/enum/problems_status.dart';
 
 
 List<Problems> userFromJson(String str) => List<Problems>.from(json.decode(str).map((x) => Problems.fromJson(x)));
@@ -14,7 +16,7 @@ class Problems {
   String description;
   String? image_url;
   String localisation;
-  String? status;
+  Problems_status? status;
   Profiles report;
   Profiles? agent;
   Categories categories;

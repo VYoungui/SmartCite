@@ -16,6 +16,9 @@ class AuthRepository extends BaseRepository {
 
 
   Future<List<Profiles>> login (LoginRequest loginRequest) async {
+    final data_email = await Supabase.instance.client.from('mobiles_app.profiles').select().eq('email', loginRequest.email);
+    if(data_email == null) throw new Exception("User Not Found");
+    //final hash = _passwordEncoder
     final data = await Supabase.instance.client.from('mobiles_app.profiles').select().eq('email', loginRequest.email).eq('password', loginRequest.password);
     if (kDebugMode) {
       print(data);
