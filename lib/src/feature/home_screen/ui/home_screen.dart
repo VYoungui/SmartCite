@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../shared/enum/button_style.dart';
 import '../../../shared/widgets/buttons/validated_button.dart';
 
@@ -46,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-
   }
 
 }
