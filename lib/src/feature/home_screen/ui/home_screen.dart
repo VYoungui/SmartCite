@@ -5,7 +5,6 @@ import 'package:smart_cite/src/shared/enum/button_style.dart';
 import 'package:smart_cite/src/shared/enum/inputfield_style.dart';
 import 'package:smart_cite/src/shared/widgets/app_avatar.dart';
 import 'package:smart_cite/src/shared/widgets/buttons/validated_button.dart';
-import 'package:smart_cite/src/shared/widgets/cards/app_snackbar.dart';
 import 'package:smart_cite/src/shared/widgets/cards/dash_card.dart';
 import 'package:smart_cite/src/shared/widgets/cards/reporting_card.dart';
 import 'package:smart_cite/src/shared/widgets/fields/input_text_field.dart';
