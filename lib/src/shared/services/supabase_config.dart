@@ -1,7 +1,8 @@
- import 'package:supabase_flutter/supabase_flutter.dart';
+ import 'package:smart_cite/src/core/environment.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-const String url = 'https://uszpckjfflywknogcwrt.supabase.co';
-const String anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzenBja2pmZmx5d2tub2djd3J0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwODMzMzg4OSwiZXhwIjoyMDIzOTA5ODg5fQ.-lWRpiPiTw5nczuScWrTdirJuxvT0smel_SRDq4viO8';
+const String url = Environment.Supabase_url;
+const String anonKey = Environment.Supabase_anonkey;
 
 Future<void> supabaseInitialize () async {
    await Supabase.initialize(

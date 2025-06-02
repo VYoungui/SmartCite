@@ -12,8 +12,8 @@ class FileStorage {
         print('doing...');
       }
       final response = await client.storage
-          .from('mailEx') // Replace with your storage bucket name
-          .upload('Interface/${imageFile.path.split('/').last}', imageFile);
+          .from('reportmobileapp') // Replace with your storage bucket name
+          .upload('reports/${imageFile.path.split('/').last}', imageFile);
       if (kDebugMode) {
         print('supabase response $response');
       }
@@ -27,8 +27,8 @@ class FileStorage {
   static Future<void> downloadImage(String filePath) async {
     try {
       final response = await client.storage
-          .from('mailEx') // Replace with your storage bucket name
-          .download('Interface/$filePath');
+          .from('reportmobileapp') // Replace with your storage bucket name
+          .download('reports/$filePath');
       File file = File(String.fromCharCodes(response));
       file.open();
       print(response);
