@@ -3,11 +3,8 @@ import 'package:smart_cite/src/feature/dto/request/categories_request.dart';
 import 'package:smart_cite/src/feature/signalement/model/categories_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../shared/repository/base_repository.dart';
 
-
-
-class CategoriesRepository extends BaseRepository {
+class CategoriesRepository{
 
   Future<List<Categories>> Create_Categories (CategoriesRequest categoriesRequest) async {
     final data_categories = await Supabase.instance.client.from('mobiles_app.categrories').insert(categoriesRequest).select();
@@ -35,7 +32,7 @@ class CategoriesRepository extends BaseRepository {
 
   Future<List<Categories>> Update_Categories (CategoriesRequest categoriesRequest) async {
     final dataCategories = await Supabase.instance.client.from('mobiles_app.categories').select().eq("name", categoriesRequest.name);
-    if(dataCategories == null) throw new Exception("Categories Not Found");
+    //if(dataCategories == null) throw new Exception("Categories Not Found");
     //final hash = _passwordEncoder
 
     final data = await Supabase.instance.client.from('mobiles_app.categories').update({'name': categoriesRequest.name}).eq("name", categoriesRequest.name);

@@ -1,56 +1,61 @@
-import 'package:flutter/foundation.dart';
-import 'package:smart_cite/src/config/util/password_encryption.dart';
-import 'package:smart_cite/src/feature/auth/model/user_model.dart';
 import 'package:smart_cite/src/feature/dto/request/login_request.dart';
 import 'package:smart_cite/src/feature/dto/request/register_request.dart';
+import 'package:smart_cite/src/shared/model/reponse_entity.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../shared/model/reponse_entity.dart';
-import '../../../shared/repository/base_repository.dart';
 
 
+class AuthRepository {
 
-class AuthRepository extends BaseRepository {
+  get email => null;
+  get password => null;
 
-  late final PasswordEncoder _passwordEncoder;
 
+  Future<ResponseEntity> login(LoginRequest loginRequest) async {
+    final AuthResponse res = await Supabase.instance.client.auth.signInWithPassword(
+      email: loginRequest.email,
+      password: loginRequest.password,
+    );
 
-  Future<List<Profiles>> login (LoginRequest loginRequest) async {
-    final data_email = await Supabase.instance.client.from('mobiles_app.profiles').select().eq('email', loginRequest.email);
-    if(data_email == null) throw new Exception("User Not Found");
-    //final hash = _passwordEncoder
-    final data = await Supabase.instance.client.from('mobiles_app.profiles').select().eq('email', loginRequest.email).eq('password', loginRequest.password);
-    if (kDebugMode) {
-      print(data);
-    }
-    List<Profiles> profiles = [];
-    for (var element in data) {
-      profiles.add(Profiles.fromJson(element));
-    }
-    return profiles;
+    final Session? session = res.session;
+
+    // On construit explicitement l'objet plutôt que d'appeler fromJson
+    return ResponseEntity(
+      success: session != null,
+      message: session != null ? 'Connexion réussie' : 'Échec de la connexion',
+      data: session, // Tu peux choisir de ne renvoyer que session.accessToken
+    );
   }
 
-  Future<List<Profiles>> register (RegisterRequest registerRequest) async {
-    final password_encrypt = _passwordEncoder.encode(registerRequest.password);
-    final payload = {
-      'email': registerRequest.email,
-      'password': password_encrypt,
-      'full_name': registerRequest.full_name,
-      'role': registerRequest.role,
-      'avatar_url': registerRequest.avatar_url,
-      'fcm_token': registerRequest.fcm_token,
-      // Ajoute les autres champs si nécessaires
-    };
-    final data = await Supabase.instance.client.from('mobiles_app.profiles').insert(payload).select();
-    if (kDebugMode) {
-      print(data);
+
+  Future<Future<ResponseEntity>> register(RegisterRequest registerRequest) async {
+    final AuthResponse res = await Supabase.instance.client.auth.signUp(
+      email: registerRequest.email,
+      password: registerRequest.password,
+      data: {
+        'username': registerRequest.full_name,
+      },
+    );
+
+    final Session? session = res.session;
+    final User? user = res.user;
+
+    if (user != null) {
+      await Supabase.instance.client.from('profiles').insert({
+        'id': user.id,
+        'full_name': registerRequest.full_name,
+        'role': registerRequest.role,
+        'avatar_url': registerRequest.avatar_url,
+        'fcm_token': session?.accessToken,
+      });
     }
-    List<Profiles> profiles = [];
-    for (var element in data) {
-      profiles.add(Profiles.fromJson(element));
-    }
-    return profiles;
+
+    return login(LoginRequest(
+      email: user?.email ?? registerRequest.email,
+      password: registerRequest.password,
+    ));
   }
+
 
 
 }

@@ -1,4 +1,6 @@
 enum Problems_status {
   reported,
-  termine,
+  in_progress,
+  resolved,
+  archived,
 }

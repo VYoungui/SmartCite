@@ -1,8 +1,8 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final String baseUrl = dotenv.env['BASE_URL']!;
+//final String baseUrl = dotenv.env['BASE_URL']!;
 //const String baseUrl = 'https://mailexapi-assqzdkzla-uc.a.run.app/api/v1';
 
+/*
 enum EndPoint {
   category,
   auth,
@@ -15,6 +15,9 @@ enum EndPoint {
   user
 }
 
+ */
+
+/*
 final endpointValues = EnumValues({
   'categorie': EndPoint.category,
   'auth': EndPoint.auth,
@@ -27,6 +30,8 @@ final endpointValues = EnumValues({
   'utilisateur': EndPoint.user,
 });
 
+ */
+/*
 class EnumValues<T> {
   Map<String, T> map;
   late Map<T, String> reverseMap;
@@ -38,3 +43,5 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+
+ */

@@ -1,15 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:smart_cite/src/feature/dto/request/categories_request.dart';
 import 'package:smart_cite/src/feature/dto/request/problems_request.dart';
-import 'package:smart_cite/src/feature/signalement/model/categories_model.dart';
 import 'package:smart_cite/src/feature/signalement/model/problems_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../shared/repository/base_repository.dart';
 
 
-
-class ProblemesRepository extends BaseRepository {
+class ProblemesRepository {
 
   Future<List<Problems>> Create_Problems (ProblemsRequest problemesRequest) async {
     final dataProblems = await Supabase.instance.client.from('mobiles_app.problems').insert(problemesRequest).select();
@@ -37,7 +33,7 @@ class ProblemesRepository extends BaseRepository {
 
   Future<List<Problems>> Update_Problems (ProblemsRequest problemesRequest) async {
     final dataProblems = await Supabase.instance.client.from('mobiles_app.problems').select('id').eq("name", problemesRequest);
-    if(dataProblems == null) throw new Exception("Categories Not Found");
+    //if(dataProblems == null) throw new Exception("Categories Not Found");
     //final hash = _passwordEncoder
 
     final data = await Supabase.instance.client.from('mobiles_app.problems').update({'name': problemesRequest}).eq("id", problemesRequest);
