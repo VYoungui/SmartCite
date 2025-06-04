@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:smart_cite/src/core/theme/dimens.dart';
 import 'package:smart_cite/src/shared/enum/avatar_style.dart';
 
@@ -12,7 +12,9 @@ class AppAvatar extends StatelessWidget {
     return Badge(
       offset: const Offset(-2, -2),
       alignment: AlignmentDirectional.bottomEnd,
-      isLabelVisible: false,
+      isLabelVisible: avatarStyle == AvatarStyle.profile
+          ? true : false,
+      largeSize: 8,
       label: avatarStyle == AvatarStyle.profile
           ? Container(
               height: 8,

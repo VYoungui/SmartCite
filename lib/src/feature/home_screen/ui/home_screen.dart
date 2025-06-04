@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 context.go('/getStart');
               },
-              buttonStyle: ValidatedButtonStyle.valid,
+              buttonStyle: ValidatedButtonStyle.valid, width: MediaQuery.of(context).size.width,
             ),
           ],
         ),

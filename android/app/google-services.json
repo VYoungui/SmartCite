@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "199110360115",
+    "project_id": "smartcite-26c58",
+    "storage_bucket": "smartcite-26c58.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199110360115:android:065523a0e21efd50593746",
+        "android_client_info": {
+          "package_name": "com.example.smart_cite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHpVcLmXMdSOj7nHsPzlzhMt9lcqFDkcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

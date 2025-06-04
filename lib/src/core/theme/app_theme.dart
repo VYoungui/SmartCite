@@ -30,7 +30,7 @@ class AppTheme {
       drawerTheme: DrawerThemeData(backgroundColor: colors.background),
       cardColor: colors.background,
       bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.background),
-      dialogTheme: DialogTheme(backgroundColor: colors.background),
+      dialogTheme: DialogThemeData(backgroundColor: colors.background),
       navigationBarTheme: NavigationBarThemeData(
         indicatorColor: colors.primary.withAlpha(75),
         surfaceTintColor: Colors.transparent,

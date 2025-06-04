@@ -53,7 +53,7 @@ class _GetStartScreen extends State<GetStartScreen> {
                 onPressed: () {
                   context.go('/unboarding1');
                 },
-                buttonStyle: ValidatedButtonStyle.valid,
+                buttonStyle: ValidatedButtonStyle.valid, width: MediaQuery.of(context).size.width,
               ),
             ),
           ],
