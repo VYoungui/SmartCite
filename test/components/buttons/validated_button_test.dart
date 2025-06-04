@@ -4,16 +4,15 @@ import 'package:smart_cite/src/shared/enum/button_style.dart';
 import 'package:smart_cite/src/shared/widgets/buttons/validated_button.dart';
 
 void main() {
-  testWidgets('ValidatedButton displays title and reacts to tap', (WidgetTester tester) async {
-    // Arrange
-    const buttonText = 'Valider';
+  testWidgets('ValidatedButton renders and triggers onPressed', (WidgetTester tester) async {
     bool wasPressed = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: ValidatedButton(
-            title: buttonText,
+            key: const Key('validatedButton'),
+            title: 'Valider',
             onPressed: () {
               wasPressed = true;
             },
@@ -24,15 +23,18 @@ void main() {
       ),
     );
 
-    // Assert
-    final buttonFinder = find.text(buttonText);
-    expect(buttonFinder, findsOneWidget); // vérifie que le texte est présent
+    // Vérifie que le bouton est affiché
+    final buttonFinder = find.byKey(const Key('validatedButton'));
+    expect(buttonFinder, findsOneWidget);
 
-    // Act
+    // Vérifie le texte du bouton
+    expect(find.text('Valider'), findsOneWidget);
+
+    // Simule un clic
     await tester.tap(buttonFinder);
-    await tester.pump(); // rafraîchit le widget après l'appui
+    await tester.pump();
 
-    // Assert
-    expect(wasPressed, isTrue); // vérifie que le callback a été appelé
+    // Vérifie que la fonction a été appelée
+    expect(wasPressed, isTrue);
   });
 }
