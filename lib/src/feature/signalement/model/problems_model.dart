@@ -17,9 +17,9 @@ class Problems {
   String? image_url;
   String localisation;
   Problems_status? status;
-  Profiles report;
+  Profiles reporter;
   Profiles? agent;
-  Categories categories;
+  Categories category;
 
 
 
@@ -28,8 +28,8 @@ class Problems {
     required this.description,
     this.image_url,
     required this.localisation,
-    required this.report,
-    required this.categories,
+    required this.reporter,
+    required this.category,
     this.agent,
     this.status,
   });
@@ -40,9 +40,9 @@ class Problems {
     image_url: json['image_url'],
     localisation: json['localisation'],
     status: json['status'],
-    report: Profiles.fromJson(json['report']),
+    reporter: Profiles.fromJson(json['report']),
     agent: Profiles.fromJson(json['agent']),
-    categories: Categories.fromJson(json['categories'])
+    category: Categories.fromJson(json['category'])
   );
 
   Map<String, dynamic> toJson() => {
