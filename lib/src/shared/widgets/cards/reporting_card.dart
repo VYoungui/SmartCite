@@ -51,7 +51,7 @@ class ReportingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    problems.category.name,
+                    problems.category_id.name,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
@@ -83,7 +83,7 @@ class ReportingCard extends StatelessWidget {
                 icon: Iconsax.calendar_2,
                 text: 'Dimanche, 12 Juin',
               ),
-              TextIcon(icon: Iconsax.clock, text: problems.status!.name),
+              TextIcon(icon: Iconsax.clock, text: problems.status!),
             ],
           ),
           const SizedBox(

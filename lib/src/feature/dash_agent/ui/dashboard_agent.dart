@@ -142,6 +142,7 @@ class DashboardAgent extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: Dimens.doublePadding,),
                   Row(
                     children: [
                       Text(

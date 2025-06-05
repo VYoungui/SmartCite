@@ -12,8 +12,7 @@ class AppAvatar extends StatelessWidget {
     return Badge(
       offset: const Offset(-2, -2),
       alignment: AlignmentDirectional.bottomEnd,
-      isLabelVisible: avatarStyle == AvatarStyle.profile
-          ? true : false,
+      isLabelVisible: false,
       largeSize: 8,
       label: avatarStyle == AvatarStyle.profile
           ? Container(
