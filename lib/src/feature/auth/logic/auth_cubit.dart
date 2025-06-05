@@ -33,9 +33,11 @@ class AuthCubit extends Cubit<AuthState> {
       try {
         ResponseEntity responseEntity =
             await authRepository.login(loginRequest);
+        print(responseEntity);
         _secureStorage.saveAccessToken(responseEntity.data!.accessToken);
         _secureStorage.saveRefreshToken(responseEntity.data.refreshToken!);
         if (responseEntity.success) {
+          print(responseEntity.data.user.id);
           Profiles user =
               await authRepository.getUser(responseEntity.data.user.id);
           _secureStorage.saveUser(user);
@@ -64,9 +66,11 @@ class AuthCubit extends Cubit<AuthState> {
       try {
         ResponseEntity responseEntity =
             await authRepository.register(registerRequest);
+        print(responseEntity);
         if (responseEntity.success) {
           Profiles user =
           await authRepository.getUser(responseEntity.data.user.id);
+          print(responseEntity.data.user.id);
           _secureStorage.saveUser(user);
           _secureStorage.saveRole(user.role);
           emit(AuthState.success(

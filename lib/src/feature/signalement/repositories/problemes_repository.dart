@@ -2,13 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:smart_cite/src/feature/dto/request/problems_request.dart';
 import 'package:smart_cite/src/feature/signalement/model/problems_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 class ProblemsRepository {
   Future<List<Problems>> createProblems(
       ProblemsRequest problemesRequest) async {
     final dataProblems = await Supabase.instance.client
-        .from('mobiles_app.problems')
+        .from('problems')
         .insert(problemesRequest)
         .select();
     if (kDebugMode) {
@@ -23,8 +22,8 @@ class ProblemsRepository {
 
   Future<List<Problems>> getProblems() async {
     final dataProblems = await Supabase.instance.client
-        .from('mobiles_app.problems')
-        .select('*,reporter(*),agent(*),category(*)');
+        .from('problems')
+        .select('*,reporter_id(*),agent_id(*),category_id(*)');
     if (kDebugMode) {
       print(dataProblems);
     }
@@ -38,7 +37,7 @@ class ProblemsRepository {
   Future<void> updateProblems(
       Problems problem) async {
     final data = await Supabase.instance.client
-        .from('mobiles_app.problems')
+        .from('problems')
         .update(problem.toJson()).eq("id", problem.id);
     if (kDebugMode) {
       print(data);
@@ -48,16 +47,16 @@ class ProblemsRepository {
   Future<void> changeProblemStatus(
       Problems problem, String newStatus) async {
     final data = await Supabase.instance.client
-        .from('mobiles_app.problems')
+        .from('problems')
         .update({'status': newStatus}).eq("id", problem.id);
     if (kDebugMode) {
       print(data);
     }
   }
 
-  Future<void> deleteProblems(Uuid id) async {
+  Future<void> deleteProblems(String id) async {
     final result = await Supabase.instance.client
-        .from("mobile_app.problems")
+        .from("problems")
         .delete()
         .eq("id", id)
         .select();

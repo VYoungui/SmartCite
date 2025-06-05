@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import 'package:uuid/uuid.dart';
-
-import '../../../shared/enum/problems_status.dart';
-
 List<ProblemsRequest> ProblemsRequestFromJson(String str) => List<ProblemsRequest>.from(json.decode(str).map((x) => ProblemsRequest.fromJson(x)));
 
 String ProblemsRequestToJson(List<ProblemsRequest> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -12,9 +8,9 @@ class ProblemsRequest {
   String description;
   String? image_url;
   String localisation;
-  Problems_status? status;
-  Uuid report_id;
-  Uuid? agent_id;
+  String? status;
+  String report_id;
+  String? agent_id;
   int category_id;
 
   ProblemsRequest({

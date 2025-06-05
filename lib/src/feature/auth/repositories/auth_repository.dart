@@ -1,9 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:smart_cite/src/feature/auth/model/user_model.dart';
 import 'package:smart_cite/src/feature/dto/request/login_request.dart';
 import 'package:smart_cite/src/feature/dto/request/register_request.dart';
 import 'package:smart_cite/src/shared/model/reponse_entity.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 
 
@@ -20,6 +20,10 @@ class AuthRepository {
 
     final Session? session = res.session;
 
+    if (kDebugMode) {
+      print(session);
+    }
+
     // On construit explicitement l'objet plutôt que d'appeler fromJson
     return ResponseEntity(
       success: session != null,
@@ -33,9 +37,10 @@ class AuthRepository {
     final AuthResponse res = await Supabase.instance.client.auth.signUp(
       email: registerRequest.email,
       password: registerRequest.password,
-      data: {
+      /*data: {
         'username': registerRequest.full_name,
       },
+       */
     );
 
     final Session? session = res.session;
@@ -45,8 +50,6 @@ class AuthRepository {
       await Supabase.instance.client.from('profiles').insert({
         'id': user.id,
         'full_name': registerRequest.full_name,
-        'role': registerRequest.role,
-        'avatar_url': registerRequest.avatar_url,
         'fcm_token': session?.accessToken,
       });
     }
@@ -58,10 +61,14 @@ class AuthRepository {
 
   }
 
-  Future<Profiles> getUser(Uuid id) async {
+  Future<Profiles> getUser(String id) async {
     final result = await Supabase.instance.client
-        .from('User')
+        .from('profiles')
         .select('*').eq('id', id);
+
+    if (kDebugMode) {
+      print(result);
+    }
     return Profiles.fromJson(result[0]);
   }
 }
