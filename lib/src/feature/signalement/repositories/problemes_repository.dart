@@ -2,13 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:smart_cite/src/feature/dto/request/problems_request.dart';
 import 'package:smart_cite/src/feature/signalement/model/problems_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uuid/uuid.dart';
 
-
-
-class ProblemesRepository {
-
-  Future<List<Problems>> Create_Problems (ProblemsRequest problemesRequest) async {
-    final dataProblems = await Supabase.instance.client.from('mobiles_app.problems').insert(problemesRequest).select();
+class ProblemsRepository {
+  Future<List<Problems>> createProblems(
+      ProblemsRequest problemesRequest) async {
+    final dataProblems = await Supabase.instance.client
+        .from('mobiles_app.problems')
+        .insert(problemesRequest)
+        .select();
     if (kDebugMode) {
       print(dataProblems);
     }
@@ -19,8 +21,10 @@ class ProblemesRepository {
     return problems;
   }
 
-  Future<List<Problems>> Get_Problems () async {
-    final dataProblems = await Supabase.instance.client.from('mobiles_app.problems').select();
+  Future<List<Problems>> getProblems() async {
+    final dataProblems = await Supabase.instance.client
+        .from('mobiles_app.problems')
+        .select('*,reporter(*),agent(*),category(*)');
     if (kDebugMode) {
       print(dataProblems);
     }
@@ -31,36 +35,34 @@ class ProblemesRepository {
     return problems;
   }
 
-  Future<List<Problems>> Update_Problems (ProblemsRequest problemesRequest) async {
-    final dataProblems = await Supabase.instance.client.from('mobiles_app.problems').select('id').eq("name", problemesRequest);
-    //if(dataProblems == null) throw new Exception("Categories Not Found");
-    //final hash = _passwordEncoder
-
-    final data = await Supabase.instance.client.from('mobiles_app.problems').update({'name': problemesRequest}).eq("id", problemesRequest);
+  Future<void> updateProblems(
+      Problems problem) async {
+    final data = await Supabase.instance.client
+        .from('mobiles_app.problems')
+        .update(problem.toJson()).eq("id", problem.id);
     if (kDebugMode) {
-      print(dataProblems);
+      print(data);
     }
-    List<Problems> problems = [];
-    for (var element in data) {
-      problems.add(Problems.fromJson(element));
-    }
-    return problems;
   }
 
-  Future<List<Problems>> Delete_Problems (int id) async {
-    final dataProblems = await Supabase.instance.client.from('mobiles_app.problems').select().eq("id", id);
+  Future<void> changeProblemStatus(
+      Problems problem, String newStatus) async {
+    final data = await Supabase.instance.client
+        .from('mobiles_app.problems')
+        .update({'status': newStatus}).eq("id", problem.id);
     if (kDebugMode) {
-      print(dataProblems);
+      print(data);
     }
-    await Supabase.instance.client.from("mobile_app.problems").delete().eq("id", id).select();
-    List<Problems> problems = [];
-    for (var element in dataProblems) {
-      problems.add(Problems.fromJson(element));
-    }
-    return problems;
-
   }
 
-
-
+  Future<void> deleteProblems(Uuid id) async {
+    final result = await Supabase.instance.client
+        .from("mobile_app.problems")
+        .delete()
+        .eq("id", id)
+        .select();
+    if (kDebugMode) {
+      print(result);
+    }
+  }
 }

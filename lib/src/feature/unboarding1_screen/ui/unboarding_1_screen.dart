@@ -20,43 +20,45 @@ class _Unboarding1Screen extends State<Unboarding1Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: Dimens.doubleSpace,
-            ),
-            Image.asset(
-                'assets/images/Send-money-abroad.png',
-                width: 222,
-                height: 260,
-                fit: BoxFit.cover
-            ),
-            const SizedBox(height: 25),
-            Container(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                  'Visualisez l’état de votre incident et surveillez son traitement',
-                  textAlign: TextAlign.center,
-                  style:
-                  Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
-                  )
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: Dimens.doubleSpace,
               ),
-            ),
-            const SizedBox(height: 80),
-            SizedBox(
-              width: 360, // Largeur augmentée
-              height: 50, // Hauteur augmentée
-              child: ValidatedButton(
-                title: 'Suivant',
-                onPressed: () {
-                  context.go('/unboarding2');
-                },
-                buttonStyle: ValidatedButtonStyle.valid,
+              Image.asset(
+                  'assets/images/Send-money-abroad.png',
+                  width: 222,
+                  height: 260,
+                  fit: BoxFit.cover
               ),
-            ),
-          ],
+              const SizedBox(height: 25),
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                    'Visualisez l’état de votre incident et surveillez son traitement',
+                    textAlign: TextAlign.center,
+                    style:
+                    Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    )
+                ),
+              ),
+              const SizedBox(height: 80),
+              SizedBox(
+                width: 360, // Largeur augmentée
+                height: 50, // Hauteur augmentée
+                child: ValidatedButton(
+                  title: 'Suivant',
+                  onPressed: () {
+                    context.go('/unboarding2');
+                  },
+                  buttonStyle: ValidatedButtonStyle.valid, width: MediaQuery.of(context).size.width,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
